@@ -1,10 +1,9 @@
 name: super_strapi
-description: A simple command-line application.
-# version: 1.0.0
-# homepage: https://www.example.com
-
+description: A Strapi dev library for Dart developers.
+ version: 0.9.0-alpha
+ homepage: https://github.com/ondbyte/super_strapi
 environment:
-  sdk: '>=2.12.2'
+  sdk: '>=2.12.2 <3.0.0'
 
 dependencies:
 #  path: ^1.7.0

@@ -1,3 +1,3 @@
-## 1.0.0
+## 0.9.0-alpha
 
-- Initial version, created by Stagehand
+- Initial version, Strapi collection model generation, strapi collection methods specific to collection type etc
