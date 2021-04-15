@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:json2yaml/json2yaml.dart';
+
 import 'package:path/path.dart';
 
 import 'package:yaml/yaml.dart';
 
 import 'gen.dart';
+import 'json2yaml/json2yaml.dart';
 
 void main(List<String> arguments) async {
   final argvParser = ArgParser();

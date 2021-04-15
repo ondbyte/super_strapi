@@ -12,9 +12,6 @@ dependencies:
   code_builder: ^3.7.0
   dart_style: any
   inflection2: ^0.4.3
-  json2yaml:
-    git:
-      url: https://github.com/ondbyte/json2yaml.git
   yaml: ^3.1.0
 
 

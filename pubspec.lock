@@ -120,15 +120,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.3"
-  json2yaml:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "14abbc358c3b5c1d04fec9220c389bea55e4d157"
-      url: "https://github.com/ondbyte/json2yaml.git"
-    source: git
-    version: "1.0.1+1"
   matcher:
     dependency: transitive
     description:
