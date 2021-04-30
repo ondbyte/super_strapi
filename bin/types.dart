@@ -416,6 +416,7 @@ class <CollectionClassName> {
     required Widget Function(
       BuildContext,
       className,
+      Bool
     )
         builder,
   }) {
@@ -437,13 +438,14 @@ class <CollectionClassName> {
   return returnable;
 };
 
+// ignore: prefer_double_quotes
 final strapiBaseWidget = '''
 
 class _StrapiListenerWidget<T> extends StatefulWidget {
   final bool sync;
   final T strapiObject;
   final T? Function(Map<String, dynamic>) generator;
-  final Widget Function(BuildContext, T) builder;
+  final Widget Function(BuildContext, T, bool) builder;
   _StrapiListenerWidget({
     Key? key,
     required this.strapiObject,
@@ -459,20 +461,24 @@ class _StrapiListenerWidget<T> extends StatefulWidget {
 class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
   late T _strapiObject;
   late final StrapiObjectListener? _listener;
+  bool _loading = false;
+
   @override
   void initState() {
     super.initState();
     _strapiObject = widget.strapiObject;
 
-    final id = (widget.strapiObject as dynamic).id;
+    final id = (_strapiObject as dynamic).id;
     if (id is String) {
       _listener = StrapiObjectListener(
         id: id,
-        listener: (map) {
+        initailData: (_strapiObject as dynamic).toMap(),
+        listener: (map, loading) {
           final updated = widget.generator(map);
           if (updated is T) {
             setState(() {
               _strapiObject = updated;
+              _loading = loading;
             });
           }
         },
@@ -493,10 +499,7 @@ class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(
-      context,
-      _strapiObject,
-    );
+    return widget.builder(context, _strapiObject, _loading);
   }
 }
 ''';
