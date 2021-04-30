@@ -416,7 +416,7 @@ class <CollectionClassName> {
     required Widget Function(
       BuildContext,
       className,
-      Bool
+      bool,
     )
         builder,
   }) {
