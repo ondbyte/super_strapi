@@ -229,8 +229,7 @@ class <CollectionClassName> {
     return ids.map((id) => className.fromID(id)).toList();
   }
 
-  static Future<className?> findOne(String id) async {
-    try{
+  static Future<className?> findOne(String id,{Function(error,stackTrace) onError}) async {    
       final mapResponse = await StrapiCollection.findOne(
       collection: collectionName,
       id: id,
@@ -238,28 +237,18 @@ class <CollectionClassName> {
     if (mapResponse.isNotEmpty) {
       return className.fromSyncedMap(mapResponse);
     }
-    }catch (e,s){
-      sPrint(e);
-      sPrint(s);
-    }
   }
 
-  static Future<List<className>> findMultiple({int limit = 16}) async {
-    try{
+  static Future<List<className>> findMultiple({int limit = 16}) async {    
       final list =
         await StrapiCollection.findMultiple(collection: collectionName,limit:limit,);
     if (list.isNotEmpty) {
       return list.map((map) => className.fromSyncedMap(map)).toList();
     }
-    }catch (e,s){
-      sPrint(e);
-      sPrint(s);
-    }
     return [];
   }
 
-  static Future<className?> create(className classVariableName) async {
-    try{
+  static Future<className?> create(className classVariableName) async {    
       final map = await StrapiCollection.create(
       collection: collectionName,
       data: classVariableName._toMap(level:0),
@@ -267,14 +256,9 @@ class <CollectionClassName> {
     if (map.isNotEmpty) {
       return className.fromSyncedMap(map);
     }
-    }catch (e,s){
-      sPrint(e);
-      sPrint(s);
-    }
   }
 
-  static Future<className?> update(className classVariableName) async {
-    try{
+  static Future<className?> update(className classVariableName) async {    
       final id = classVariableName.id;
     if (id is String) {
       final map = await StrapiCollection.update(
@@ -288,25 +272,13 @@ class <CollectionClassName> {
     } else {
       sPrint("id is null while updating");
     }
-      }
-      catch (e,s){
-      sPrint(e);
-      sPrint(s);
-    }
   }
 
-  static Future<int> count() async {
-    try{
-      return await StrapiCollection.count(collectionName);
-    }catch (e,s){
-      sPrint(e);
-      sPrint(s);
-    }
-      return 0;
+  static Future<int> count() async {    
+      return await StrapiCollection.count(collectionName)??0;
   }
 
-  static Future<className?> delete(className classVariableName) async {
-    try{
+  static Future<className?> delete(className classVariableName) async {    
       final id = classVariableName.id;
     if (id is String) {
       final map =
@@ -316,10 +288,6 @@ class <CollectionClassName> {
       }
     } else {
       sPrint("id is null while deleting");
-    }
-    }catch (e,s){
-      sPrint(e);
-      sPrint(s);
     }
   }  
   
@@ -335,8 +303,7 @@ class <CollectionClassName> {
   }
 
   static Future<List<className>> executeQuery(StrapiCollectionQuery query,{int maxTimeOutInMillis = 15000}) async {
-    final queryString = query.query(collectionName:collectionName,);
-    try{
+    final queryString = query.query(collectionName:collectionName,);    
       final response = await Strapi.i.graphRequest(queryString,maxTimeOutInMillis:maxTimeOutInMillis);
       if(response.body.isNotEmpty){
         final object = response.body.first;
@@ -362,10 +329,6 @@ class <CollectionClassName> {
           }
         }
       }
-    }catch (e,s){
-      sPrint(e);
-      sPrint(s);
-    }
     return [];
   }
 
@@ -384,7 +347,7 @@ class <CollectionClassName> {
     if(asFindOne&&(_me is className && _id is String)){
       return findOne(_id);
     }
-    try{
+    
       if(Strapi.i.strapiToken.isEmpty){
       throw StrapiException(msg:"cannot get users/me endpoint without token, please authenticate first");
     }
@@ -399,10 +362,6 @@ class <CollectionClassName> {
       return me(asFindOne:asFindOne);
     }
     return _me;
-    } catch (e,s){
-      sPrint(e);
-      sPrint(s);
-    }
   }''';
   }
   returnable = returnable.replaceFirst("<userMe>", userMeString);
