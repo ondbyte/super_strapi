@@ -229,7 +229,7 @@ class <CollectionClassName> {
     return ids.map((id) => className.fromID(id)).toList();
   }
 
-  static Future<className?> findOne(String id,{Function(error,stackTrace) onError}) async {    
+  static Future<className?> findOne(String id,) async {    
       final mapResponse = await StrapiCollection.findOne(
       collection: collectionName,
       id: id,
