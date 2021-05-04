@@ -370,6 +370,7 @@ class <CollectionClassName> {
     // ignore: prefer_double_quotes
     widgetBuilderSTring = '''
   static Widget listenerWidget({
+    Key? key,
     required className strapiObject,
     bool sync = false,
     required Widget Function(
@@ -380,6 +381,7 @@ class <CollectionClassName> {
         builder,
   }) {
     return _StrapiListenerWidget<className>(
+      key:key,
       strapiObject: strapiObject,
       generator: className.fromMap,
       builder: builder,
