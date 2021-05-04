@@ -275,7 +275,7 @@ class <CollectionClassName> {
   }
 
   static Future<int> count() async {    
-      return await StrapiCollection.count(collectionName)??0;
+      return await StrapiCollection.count(collectionName);
   }
 
   static Future<className?> delete(className classVariableName) async {    
@@ -421,7 +421,7 @@ class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
   late T _strapiObject;
   late final StrapiObjectListener? _listener;
   bool _loading = false;
-  
+
   @override
   void initState() {
     super.initState();
