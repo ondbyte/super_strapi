@@ -421,33 +421,39 @@ class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
   late T _strapiObject;
   late final StrapiObjectListener? _listener;
   bool _loading = false;
-
+  
   @override
   void initState() {
     super.initState();
     _strapiObject = widget.strapiObject;
 
-    final id = (_strapiObject as dynamic).id;
-    if (id is String) {
-      _listener = StrapiObjectListener(
-        id: id,
-        initailData: (_strapiObject as dynamic).toMap(),
-        listener: (map, loading) {
-          final updated = widget.generator(map);
-          if (updated is T) {
-            setState(() {
-              _strapiObject = updated;
-              _loading = loading;
-            });
-          }
-        },
-      );
-      if (widget.sync) {
-        (_strapiObject as dynamic).sync();
+    _postInit();
+  }
+
+  void _postInit() {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      final id = (_strapiObject as dynamic).id;
+      if (id is String) {
+        _listener = StrapiObjectListener(
+          id: id,
+          initailData: (_strapiObject as dynamic).toMap(),
+          listener: (map, loading) {
+            final updated = widget.generator(map);
+            if (updated is T) {
+              setState(() {
+                _strapiObject = updated;
+                _loading = loading;
+              });
+            }
+          },
+        );
+        if (widget.sync) {
+          (_strapiObject as dynamic).sync();
+        }
+      } else {
+        _listener = null;
       }
-    } else {
-      _listener = null;
-    }
+    });
   }
 
   @override
