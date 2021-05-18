@@ -293,13 +293,13 @@ class <CollectionClassName> {
 
   static Locality? _fromIDorData(idOrData) {
     if (idOrData is String) {
-      return Locality.fromID(idOrData);
+      return className.fromID(idOrData);
     }
     if (idOrData is Map) {
       if (idOrData.length == 1) {
-        return Locality.fromID(idOrData[0]);
+        return className.fromID(idOrData[0]);
       }
-      return Locality.fromSyncedMap(idOrData);
+      return className.fromSyncedMap(idOrData);
     }
     return null;
   }
