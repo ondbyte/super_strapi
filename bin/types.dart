@@ -290,14 +290,16 @@ class <CollectionClassName> {
       sPrint("id is null while deleting");
     }
   }  
-  
 
-  static className? _fromIDorData(idOrData) {
+  static Locality? _fromIDorData(idOrData) {
     if (idOrData is String) {
-      return className.fromID(idOrData);
+      return Locality.fromID(idOrData);
     }
     if (idOrData is Map) {
-      return className.fromSyncedMap(idOrData);
+      if (idOrData.length == 1) {
+        return Locality.fromID(idOrData[0]);
+      }
+      return Locality.fromSyncedMap(idOrData);
     }
     return null;
   }
