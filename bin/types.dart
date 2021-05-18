@@ -291,7 +291,7 @@ class <CollectionClassName> {
     }
   }  
 
-  static Locality? _fromIDorData(idOrData) {
+  static className? _fromIDorData(idOrData) {
     if (idOrData is String) {
       return className.fromID(idOrData);
     }
