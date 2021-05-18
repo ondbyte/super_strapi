@@ -296,8 +296,9 @@ class <CollectionClassName> {
       return className.fromID(idOrData);
     }
     if (idOrData is Map) {
-      if (idOrData.length == 1) {
-        return className.fromID(idOrData[0]);
+      if (idOrData.containsKey("id")) {
+        final id = idOrData["id"];
+        return className.fromID(id);
       }
       return className.fromSyncedMap(idOrData);
     }
