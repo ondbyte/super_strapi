@@ -296,7 +296,7 @@ class <CollectionClassName> {
       return className.fromID(idOrData);
     }
     if (idOrData is Map) {
-      if (idOrData.length==1&&idOrData.containsKey("id")) {
+      if ((idOrData.containsKey("createdAt")||idOrData.containsKey("updatedAt"))&&(idOrData["createdAt"]==null||idOrData["updatedAt"]==null)) {
         final id = idOrData["id"];
         return className.fromID(id);
       }
