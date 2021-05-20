@@ -583,7 +583,7 @@ class Gen {
             "final toServer = level==0;\nreturn {${[
               ...fields.map((field) => CodeExpression(Code(isComponent
                       ? "${accessFromMapExpression(field, false).code.toString()}"
-                      : ("if(!_emptyFields.${field.name} && ${field.name}!=null) ${accessFromMapExpression(field, false).code.toString()}")))
+                      : ("if(_emptyFields.${field.name})\"${field.name}\":null else if(!_emptyFields.${field.name}&&${field.name}!=null) ${accessFromMapExpression(field, false).code.toString()}")))
                   .code
                   .toString()),
               if (!isComponent)
