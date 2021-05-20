@@ -1,6 +1,6 @@
-import 'package:flutter/widgets.dart';
 import 'package:simple_strapi/simple_strapi.dart';
 import 'dart:convert';
+import 'package:flutter/widgets.dart';
 
 class _StrapiListenerWidget<T> extends StatefulWidget {
   final bool sync;
@@ -185,7 +185,7 @@ class City {
         "country":
             toServer ? country?.id : country?._toMap(level: level + level),
       if (_emptyFields.localities)
-        "localities": null
+        "localities": []
       else if (!_emptyFields.localities && localities != null)
         "localities": localities
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -576,7 +576,7 @@ class Employee {
       else if (!_emptyFields.name && name != null)
         "name": name,
       if (_emptyFields.image)
-        "image": null
+        "image": []
       else if (!_emptyFields.image && image != null)
         "image": image
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -590,13 +590,13 @@ class Employee {
       else if (!_emptyFields.user && user != null)
         "user": toServer ? user?.id : user?._toMap(level: level + level),
       if (_emptyFields.bookings)
-        "bookings": null
+        "bookings": []
       else if (!_emptyFields.bookings && bookings != null)
         "bookings": bookings
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
             .toList(),
       if (_emptyFields.holidays)
-        "holidays": null
+        "holidays": []
       else if (!_emptyFields.holidays && holidays != null)
         "holidays":
             holidays?.map((e) => e._toMap(level: level + level)).toList(),
@@ -1102,12 +1102,12 @@ class Booking {
       else if (!_emptyFields.bookingType && bookingType != null)
         "bookingType": StrapiUtils.enumToString(bookingType),
       if (_emptyFields.packages)
-        "packages": null
+        "packages": []
       else if (!_emptyFields.packages && packages != null)
         "packages":
             packages?.map((e) => e._toMap(level: level + level)).toList(),
       if (_emptyFields.products)
-        "products": null
+        "products": []
       else if (!_emptyFields.products && products != null)
         "products":
             products?.map((e) => e._toMap(level: level + level)).toList(),
@@ -2205,7 +2205,7 @@ class Country {
       else if (!_emptyFields.localName && localName != null)
         "localName": localName,
       if (_emptyFields.cities)
-        "cities": null
+        "cities": []
       else if (!_emptyFields.cities && cities != null)
         "cities": cities
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -2739,12 +2739,12 @@ class Business {
         "partner":
             toServer ? partner?.id : partner?._toMap(level: level + level),
       if (_emptyFields.packages)
-        "packages": null
+        "packages": []
       else if (!_emptyFields.packages && packages != null)
         "packages":
             packages?.map((e) => e._toMap(level: level + level)).toList(),
       if (_emptyFields.businessFeatures)
-        "businessFeatures": null
+        "businessFeatures": []
       else if (!_emptyFields.businessFeatures && businessFeatures != null)
         "businessFeatures": businessFeatures
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -2772,22 +2772,22 @@ class Business {
       else if (!_emptyFields.about && about != null)
         "about": about,
       if (_emptyFields.catalogue)
-        "catalogue": null
+        "catalogue": []
       else if (!_emptyFields.catalogue && catalogue != null)
         "catalogue":
             catalogue?.map((e) => e._toMap(level: level + level)).toList(),
       if (_emptyFields.dayTiming)
-        "dayTiming": null
+        "dayTiming": []
       else if (!_emptyFields.dayTiming && dayTiming != null)
         "dayTiming":
             dayTiming?.map((e) => e._toMap(level: level + level)).toList(),
       if (_emptyFields.holidays)
-        "holidays": null
+        "holidays": []
       else if (!_emptyFields.holidays && holidays != null)
         "holidays":
             holidays?.map((e) => e._toMap(level: level + level)).toList(),
       if (_emptyFields.employees)
-        "employees": null
+        "employees": []
       else if (!_emptyFields.employees && employees != null)
         "employees": employees
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -3158,7 +3158,7 @@ class BusinessCategory {
       else if (!_emptyFields.name && name != null)
         "name": name,
       if (_emptyFields.businesses)
-        "businesses": null
+        "businesses": []
       else if (!_emptyFields.businesses && businesses != null)
         "businesses": businesses
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -3512,13 +3512,13 @@ class Partner {
       else if (!_emptyFields.enabled && enabled != null)
         "enabled": enabled,
       if (_emptyFields.logo)
-        "logo": null
+        "logo": []
       else if (!_emptyFields.logo && logo != null)
         "logo": logo
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
             .toList(),
       if (_emptyFields.businesses)
-        "businesses": null
+        "businesses": []
       else if (!_emptyFields.businesses && businesses != null)
         "businesses": businesses
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -5258,13 +5258,13 @@ class Role {
       else if (!_emptyFields.type && type != null)
         "type": type,
       if (_emptyFields.permissions)
-        "permissions": null
+        "permissions": []
       else if (!_emptyFields.permissions && permissions != null)
         "permissions": permissions
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
             .toList(),
       if (_emptyFields.users)
-        "users": null
+        "users": []
       else if (!_emptyFields.users && users != null)
         "users": users
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -5819,7 +5819,7 @@ class User {
       else if (!_emptyFields.role && role != null)
         "role": toServer ? role?.id : role?._toMap(level: level + level),
       if (_emptyFields.favourites)
-        "favourites": null
+        "favourites": []
       else if (!_emptyFields.favourites && favourites != null)
         "favourites":
             favourites?.map((e) => e._toMap(level: level + level)).toList(),
@@ -5828,7 +5828,7 @@ class User {
       else if (!_emptyFields.name && name != null)
         "name": name,
       if (_emptyFields.pushNotifications)
-        "pushNotifications": null
+        "pushNotifications": []
       else if (!_emptyFields.pushNotifications && pushNotifications != null)
         "pushNotifications": pushNotifications
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -5853,7 +5853,7 @@ class User {
       else if (!_emptyFields.city && city != null)
         "city": toServer ? city?.id : city?._toMap(level: level + level),
       if (_emptyFields.bookings)
-        "bookings": null
+        "bookings": []
       else if (!_emptyFields.bookings && bookings != null)
         "bookings": bookings
             ?.map((e) => toServer ? e.id : e._toMap(level: level + level))
@@ -6857,7 +6857,7 @@ class StrapiFile {
       else if (!_emptyFields.provider_metadata && provider_metadata != null)
         "provider_metadata": provider_metadata,
       if (_emptyFields.related)
-        "related": null
+        "related": []
       else if (!_emptyFields.related && related != null)
         "related": related,
       "createdAt": createdAt?.toIso8601String(),

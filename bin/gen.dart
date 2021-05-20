@@ -571,6 +571,14 @@ class Gen {
       ..lambda = true
       ..body = Code("_toMap(level:-1)"));
 
+    final _getNullForType = (Field field) {
+      final type = field.type.runtimeType;
+      if (type == ComponentListReference || type == CollectionListReference) {
+        return "[]";
+      }
+      return "null";
+    };
+
     final toPrivateMapMethod = (MethodBuilder()
           ..name = "_toMap"
           ..returns = Reference("Map<String,dynamic>")
@@ -583,7 +591,7 @@ class Gen {
             "final toServer = level==0;\nreturn {${[
               ...fields.map((field) => CodeExpression(Code(isComponent
                       ? "${accessFromMapExpression(field, false).code.toString()}"
-                      : ("if(_emptyFields.${field.name})\"${field.name}\":null else if(!_emptyFields.${field.name}&&${field.name}!=null) ${accessFromMapExpression(field, false).code.toString()}")))
+                      : ("if(_emptyFields.${field.name})\"${field.name}\":${_getNullForType(field)} else if(!_emptyFields.${field.name}&&${field.name}!=null) ${accessFromMapExpression(field, false).code.toString()}")))
                   .code
                   .toString()),
               if (!isComponent)
