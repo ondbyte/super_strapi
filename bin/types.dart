@@ -434,6 +434,20 @@ class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
 
     _postInit();
   }
+  
+  Future<bool> rebuild() async {
+  if (!mounted) return false;
+
+  // if there's a current frame,
+  if (SchedulerBinding.instance.schedulerPhase != SchedulerPhase.idle) {
+    // wait for the end of that frame.
+    await SchedulerBinding.instance.endOfFrame;
+    if (!mounted) return false;
+  }
+
+  setState(() {});
+  return true;
+}
 
   void _postInit() {
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
@@ -444,11 +458,10 @@ class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
           initailData: (_strapiObject as dynamic).toMap(),
           listener: (map, loading) {
             final updated = widget.generator(map);
-            if (updated is T&&mounted) {
-              setState(() {
+            if (updated is T&&mounted) {              
                 _strapiObject = updated;
                 _loading = loading;
-              });
+                rebuild();
             }
           },
         );
