@@ -444,7 +444,7 @@ class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
           initailData: (_strapiObject as dynamic).toMap(),
           listener: (map, loading) {
             final updated = widget.generator(map);
-            if (updated is T) {
+            if (updated is T&&mounted) {
               setState(() {
                 _strapiObject = updated;
                 _loading = loading;
