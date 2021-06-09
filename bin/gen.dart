@@ -145,6 +145,11 @@ class Gen {
               ..url = "package:flutter/widgets.dart")
             .build());
         b.body.add(Code(strapiBaseWidget));
+        b.directives.add((DirectiveBuilder()
+              ..type = DirectiveType.import
+              ..url = "package:flutter/scheduler.dart")
+            .build());
+        b.body.add(Code(strapiBaseWidget));
       }
       apiJsons.forEach((key, value) {
         final collectionName = getCollectionNameFromRoutesFile(key);
