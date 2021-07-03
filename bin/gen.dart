@@ -599,10 +599,10 @@ class Gen {
                       : ("if(_emptyFields.${field.name})\"${field.name}\":${_getNullForType(field)} else if(!_emptyFields.${field.name}&&${field.name}!=null) ${accessFromMapExpression(field, false).code.toString()}")))
                   .code
                   .toString()),
-              if (!isComponent)
+              /* if (!isComponent)
                 accessFromMapExpression(createdAtField, false).code.toString(),
               if (!isComponent)
-                accessFromMapExpression(updatedAtField, false).code.toString(),
+                accessFromMapExpression(updatedAtField, false).code.toString(), */
               if (!isComponent)
                 accessFromMapExpression(idField, false).code.toString(),
             ].fold<List<String>>([], (pv, e) {
