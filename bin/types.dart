@@ -439,9 +439,9 @@ class _StrapiListenerWidgetState<T> extends State<_StrapiListenerWidget<T>> {
   if (!mounted) return false;
 
   // if there's a current frame,
-  if (SchedulerBinding.instance.schedulerPhase != SchedulerPhase.idle) {
+  if (SchedulerBinding.instance?.schedulerPhase != SchedulerPhase.idle) {
     // wait for the end of that frame.
-    await SchedulerBinding.instance.endOfFrame;
+    await SchedulerBinding.instance?.endOfFrame;
     if (!mounted) return false;
   }
 
