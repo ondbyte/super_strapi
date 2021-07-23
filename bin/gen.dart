@@ -149,7 +149,6 @@ class Gen {
               ..type = DirectiveType.import
               ..url = "package:flutter/scheduler.dart")
             .build());
-        b.body.add(Code(strapiBaseWidget));
       }
       apiJsons.forEach((key, value) {
         final collectionName = getCollectionNameFromRoutesFile(key);
@@ -214,7 +213,12 @@ class Gen {
     String? collectionName,
   ) {
     if (!j.containsKey("attributes")) {
-      throw Exception("attributes missing in the strapi model");
+      // print(j);
+      // print(file);
+      // print(isComponent);
+      // print(collectionName);
+      // throw Exception("attributes missing in the strapi model");
+      return [];
     }
     final _name =
         path.basenameWithoutExtension(path.basenameWithoutExtension(file.path));

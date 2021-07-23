@@ -69,6 +69,13 @@ void main(List<String> arguments) async {
         defaultModels,
         shouldGenerateWidgets,
       );
+      print(
+        strapiProjectDirectory,
+      );
+      print(outPutFile);
+      print(isSchemaOnly);
+      print(defaultModels);
+      print(shouldGenerateWidgets);
 
       await gen.generate();
     } else {
