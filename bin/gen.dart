@@ -30,13 +30,13 @@ class Gen {
     this.shouldGnerateWidgets,
   ) {
     apiDirectory = Directory(
-      path.join(strapiProjectDirectory.path, "api"),
+      path.join(strapiProjectDirectory.path, "src/api"),
     );
     componentDirectory = Directory(
-      path.join(strapiProjectDirectory.path, "components"),
+      path.join(strapiProjectDirectory.path, "src/components"),
     );
     extensionsDirectory = Directory(
-      path.join(strapiProjectDirectory.path, "extensions"),
+      path.join(strapiProjectDirectory.path, "src/extensions"),
     );
   }
 
